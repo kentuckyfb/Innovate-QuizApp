@@ -118,39 +118,64 @@ export function WelcomeScreen() {
                   }}
                 />
 
-                <motion.img
-                  src={image2}
-                  alt="Avrudu Greatness Level Up"
-                  className="w-full h-auto rounded-xl shadow-lg relative z-10 object-contain"
-                  style={{ maxHeight: '40vh' }} // Match the container's max height
-                  animate={{
-                    scale: [1, 1.01, 1],
-                    rotate: [0, 0.5, 0, -0.5, 0],
+                <motion.div
+                  variants={itemVariants}
+                  className="relative mb-4 w-full mx-auto"
+                  style={{
+                    height: 'auto',
+                    maxWidth: '90%'
                   }}
-                  transition={{
-                    scale: {
-                      duration: 5,
+                >
+                  <motion.div
+                    className="absolute inset-0 rounded-lg opacity-20 blur-md"
+                    style={{ backgroundColor: theme.colors.primary.dark }}
+                    animate={{
+                      scale: [1, 1.03, 1],
+                    }}
+                    transition={{
+                      duration: 3,
                       repeat: Infinity,
                       repeatType: 'mirror',
-                    },
-                    rotate: {
-                      duration: 6,
-                      repeat: Infinity,
-                      repeatType: 'mirror',
-                    },
-                  }}
-                />
-              </motion.div>
-              <motion.h1
-                variants={itemVariants}
-                className="mb-3 leading-tight"
-                style={{ color: theme.colors.primary.contrastText }}
-              >
-                {/* Reduced size for "Unlock Your Innovate" text */}
-                <span className="text-sm sm:text-base md:text-lg font-medium block mb-1">
-                  Unlock Your Innovate
-                </span>
-                {/* <span
+                    }}
+                  />
+
+                  <motion.img
+                    src={image2}
+                    alt="Avrudu Greatness Level Up"
+                    className="w-full h-auto rounded-xl shadow-lg relative z-10"
+                    style={{
+                      maxWidth: '100%',
+                      maxHeight: '30vh',
+                      objectFit: 'contain'
+                    }}
+                    animate={{
+                      scale: [1, 1.01, 1],
+                      rotate: [0, 0.5, 0, -0.5, 0],
+                    }}
+                    transition={{
+                      scale: {
+                        duration: 5,
+                        repeat: Infinity,
+                        repeatType: 'mirror',
+                      },
+                      rotate: {
+                        duration: 6,
+                        repeat: Infinity,
+                        repeatType: 'mirror',
+                      },
+                    }}
+                  />
+                </motion.div>
+                <motion.h1
+                  variants={itemVariants}
+                  className="mb-3 leading-tight"
+                  style={{ color: theme.colors.primary.contrastText }}
+                >
+                  {/* Reduced size for "Unlock Your Innovate" text */}
+                  <span className="text-sm sm:text-base md:text-lg font-medium block mb-1">
+                    Unlock Your Innovate
+                  </span>
+                  {/* <span
                 style={{
                   ...personalityStyle,
                   color: theme.colors.secondary.main,
@@ -164,77 +189,77 @@ export function WelcomeScreen() {
               >
                 INNOVATE{' '}
               </span>{' '} */}
-                {/* Sinhala text - keep original font */}
-                <span
-                  className="font-bold"
-                  style={{
-                    fontSize: 'clamp(1.25rem, 5vw, 2.5rem)',
-                  }}
+                  {/* Sinhala text - keep original font */}
+                  <span
+                    className="font-bold"
+                    style={{
+                      fontSize: 'clamp(1.25rem, 5vw, 2.5rem)',
+                    }}
+                  >
+                    අවුරුදු{' '}
+                  </span>
+                  {/* Apply Jockey One only to "Personality" with darker purple shadow */}
+                  <span
+                    style={{
+                      ...personalityStyle,
+                      color: theme.colors.secondary.main,
+                      fontSize: 'clamp(1rem, 5vw, 2.5rem)',
+                      display: 'inline-block',
+                      position: 'relative',
+                      transform: 'translateY(2px)',
+                      fontFamily: 'Arame',
+                      fontWeight: 'bold',
+                    }}
+                  >
+                    PERSONALITY
+                  </span>{' '}
+                </motion.h1>
+
+                <motion.p
+                  variants={itemVariants}
+                  className="text-sm sm:text-base mb-5 max-w-sm mx-auto"
+                  style={{ color: theme.colors.primary.contrastText }}
                 >
-                  අවුරුදු{' '}
-                </span>
-                {/* Apply Jockey One only to "Personality" with darker purple shadow */}
-                <span
+                  Find out which Sinhala & Tamil New Year personality matches your
+                  vibe!
+                </motion.p>
+              </div>
+
+              {/* Button at bottom with subtle animation */}
+              <motion.div
+                variants={itemVariants}
+                className="relative inline-block self-center mb-2"
+              >
+                {/* Remove the problematic glow effect and replace with a simple button */}
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={handleStartQuiz}
+                  className="relative px-6 py-3 rounded-full font-semibold shadow-lg z-10 text-sm md:text-base"
                   style={{
-                    ...personalityStyle,
-                    color: theme.colors.secondary.main,
-                    fontSize: 'clamp(1rem, 5vw, 2.5rem)',
-                    display: 'inline-block',
-                    position: 'relative',
-                    transform: 'translateY(2px)',
+                    backgroundColor: theme.colors.secondary.main,
+                    color: theme.colors.primary.contrastText,
+                    ...buttonShadowStyle,
                     fontFamily: 'Arame',
                     fontWeight: 'bold',
                   }}
+                  animate={{
+                    boxShadow: [
+                      `4px 4px 0px rgba(51, 0, 51, 1), 0px 0px 0px rgba(251, 192, 45, 0)`,
+                      `4px 4px 0px rgba(51, 0, 51, 1), 0px 0px 15px rgba(251, 192, 45, 0.6)`,
+                      `4px 4px 0px rgba(51, 0, 51, 1), 0px 0px 0px rgba(251, 192, 45, 0)`,
+                    ],
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    repeatType: 'mirror',
+                  }}
                 >
-                  PERSONALITY
-                </span>{' '}
-              </motion.h1>
-
-              <motion.p
-                variants={itemVariants}
-                className="text-sm sm:text-base mb-5 max-w-sm mx-auto"
-                style={{ color: theme.colors.primary.contrastText }}
-              >
-                Find out which Sinhala & Tamil New Year personality matches your
-                vibe!
-              </motion.p>
+                  READY TO PLAY?
+                </motion.button>
+              </motion.div>
           </div>
-
-          {/* Button at bottom with subtle animation */}
-          <motion.div
-            variants={itemVariants}
-            className="relative inline-block self-center mb-2"
-          >
-            {/* Remove the problematic glow effect and replace with a simple button */}
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={handleStartQuiz}
-              className="relative px-6 py-3 rounded-full font-semibold shadow-lg z-10 text-sm md:text-base"
-              style={{
-                backgroundColor: theme.colors.secondary.main,
-                color: theme.colors.primary.contrastText,
-                ...buttonShadowStyle,
-                fontFamily: 'Arame',
-                fontWeight: 'bold',
-              }}
-              animate={{
-                boxShadow: [
-                  `4px 4px 0px rgba(51, 0, 51, 1), 0px 0px 0px rgba(251, 192, 45, 0)`,
-                  `4px 4px 0px rgba(51, 0, 51, 1), 0px 0px 15px rgba(251, 192, 45, 0.6)`,
-                  `4px 4px 0px rgba(51, 0, 51, 1), 0px 0px 0px rgba(251, 192, 45, 0)`,
-                ],
-              }}
-              transition={{
-                duration: 2,
-                repeat: Infinity,
-                repeatType: 'mirror',
-              }}
-            >
-              READY TO PLAY?
-            </motion.button>
-          </motion.div>
-        </div>
       </motion.div>
     </>
   );
