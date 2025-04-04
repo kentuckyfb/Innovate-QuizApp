@@ -167,8 +167,8 @@ export function WelcomeScreen() {
                   fontWeight: 'bold',
                 }}
               >
-                INNOVATE{' '}
-              </span>
+                INNOVATE
+              </span>{' '}
               {/* Sinhala text */}
               <span
                 className="font-bold"
@@ -178,7 +178,7 @@ export function WelcomeScreen() {
               >
                 අවුරුදු{' '}
               </span>
-              
+              {' '}
               {/* "PERSONALITY" text */}
               <span
                 style={{
