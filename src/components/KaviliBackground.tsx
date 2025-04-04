@@ -3,10 +3,9 @@ import { motion } from 'framer-motion';
 import { theme } from '../lib/theme';
 import { useBackgroundStore } from '../store/backgroundStore';
 
-// Import kavili images
+// Import kavili images - removed kavili3
 import kavili1 from '../assets/kavili-1.png';
 import kavili2 from '../assets/kavili-2.png';
-import kavili3 from '../assets/kavili-3.png';
 import kavili4 from '../assets/kavili-4.png';
 
 // Animation variants for different movement patterns with improved smoothness
@@ -120,10 +119,10 @@ const KaviliBackground = () => {
   // Get the background seed from the store
   const { backgroundSeed } = useBackgroundStore();
 
-  // Array of kavili images to use
-  const kaviliImages = [kavili1, kavili2, kavili3, kavili4];
+  // Array of kavili images - removed kavili3
+  const kaviliImages = [kavili1, kavili2, kavili4];
 
-  // Generate a list of kavili elements optimized for mobile
+  // Generate a list of kavili elements with equal distribution
   const generateKaviliElements = (seed: number) => {
     // Use the seed for predictable randomness
     const seededRandom = (seed: number) => {
@@ -131,8 +130,8 @@ const KaviliBackground = () => {
       return x - Math.floor(x);
     };
 
-    // Increased from 3 to 5 elements
-    const totalElements = 5;
+    // Total 18 elements (6 of each image)
+    const totalElements = 18;
     const elements = [];
 
     // Define some strategic positions that work well on mobile
@@ -146,14 +145,24 @@ const KaviliBackground = () => {
       { top: 35, left: 88 },
       { top: 60, left: 12 },
       { top: 68, left: 90 },
+      { top: 5, left: 50 },
+      { top: 95, left: 45 },
+      { top: 45, left: 5 },
+      { top: 40, left: 95 },
+      { top: 8, left: 70 },
+      { top: 92, left: 25 },
+      { top: 20, left: 40 },
+      { top: 78, left: 65 },
+      { top: 50, left: 22 },
+      { top: 55, left: 78 },
     ];
 
     // Shuffle positions array to get random subset using seeded random
     const shuffledPositions = [...mobilePositions].sort(
       () => seededRandom(seed + 1) - 0.5
     );
-
-    // Create kavili elements at those positions
+    
+    // Create elements with equal distribution of images (6 of each)
     for (let i = 0; i < totalElements; i++) {
       const position = shuffledPositions[i] || {
         top: seededRandom(seed + i * 10) * 80 + 10,
@@ -164,21 +173,19 @@ const KaviliBackground = () => {
       const top = position.top + (seededRandom(seed + i) * 6 - 3);
       const left = position.left + (seededRandom(seed + i * 30) * 6 - 3);
 
-      // Select a random image from our array using seeded random
-      const imageSrc =
-        kaviliImages[
-          Math.floor(seededRandom(seed + i * 40) * kaviliImages.length)
-        ];
+      // Determine image index to ensure equal distribution
+      // Each image appears exactly 6 times (18 total / 3 images)
+      const imageIndex = Math.floor(i / 6);
 
-      // Calculate a responsive size - REDUCED SIZE RANGE
-      const size = 20 + seededRandom(seed + i * 50) * 20; // 20-40px (reduced from 30-60px)
+      // Calculate a responsive size
+      const size = 20 + seededRandom(seed + i * 50) * 20; // 20-40px
 
       // Generate varied animation properties
       const rotationSpeed = 0.2 + seededRandom(seed + i * 60) * 0.4; // Slower rotation for more natural look
-      const floatAmount = 6 + seededRandom(seed + i * 70) * 6; // 6-12px float (reduced from 8-16px)
+      const floatAmount = 6 + seededRandom(seed + i * 70) * 6; // 6-12px float
 
       elements.push({
-        imageSrc,
+        imageSrc: kaviliImages[imageIndex],
         top,
         left,
         size,
@@ -188,7 +195,8 @@ const KaviliBackground = () => {
       });
     }
 
-    return elements;
+    // Shuffle the array once more to randomize positions while maintaining equal distribution
+    return elements.sort(() => seededRandom(seed + 100) - 0.5);
   };
 
   // Create the array of kavili elements using the background seed
@@ -231,7 +239,7 @@ const KaviliBackground = () => {
           size={props.size}
           rotationSpeed={props.rotationSpeed}
           floatAmount={props.floatAmount}
-          delay={index * 0.4} // Greatly increased stagger for variation
+          delay={index * 0.4} // Stagger for variation
         />
       ))}
     </div>
