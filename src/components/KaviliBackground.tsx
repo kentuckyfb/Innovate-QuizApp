@@ -130,8 +130,8 @@ const KaviliBackground = () => {
       return x - Math.floor(x);
     };
 
-    // Total 18 elements (6 of each image)
-    const totalElements = 18;
+    // Total 6 elements (2 of each image)
+    const totalElements = 6;
     const elements = [];
 
     // Define some strategic positions that work well on mobile
@@ -145,16 +145,6 @@ const KaviliBackground = () => {
       { top: 35, left: 88 },
       { top: 60, left: 12 },
       { top: 68, left: 90 },
-      { top: 5, left: 50 },
-      { top: 95, left: 45 },
-      { top: 45, left: 5 },
-      { top: 40, left: 95 },
-      { top: 8, left: 70 },
-      { top: 92, left: 25 },
-      { top: 20, left: 40 },
-      { top: 78, left: 65 },
-      { top: 50, left: 22 },
-      { top: 55, left: 78 },
     ];
 
     // Shuffle positions array to get random subset using seeded random
@@ -162,7 +152,7 @@ const KaviliBackground = () => {
       () => seededRandom(seed + 1) - 0.5
     );
     
-    // Create elements with equal distribution of images (6 of each)
+    // Create elements with equal distribution of images (2 of each)
     for (let i = 0; i < totalElements; i++) {
       const position = shuffledPositions[i] || {
         top: seededRandom(seed + i * 10) * 80 + 10,
@@ -174,8 +164,8 @@ const KaviliBackground = () => {
       const left = position.left + (seededRandom(seed + i * 30) * 6 - 3);
 
       // Determine image index to ensure equal distribution
-      // Each image appears exactly 6 times (18 total / 3 images)
-      const imageIndex = Math.floor(i / 6);
+      // Each image appears exactly 2 times (6 total / 3 images)
+      const imageIndex = Math.floor(i / 2);
 
       // Calculate a responsive size
       const size = 20 + seededRandom(seed + i * 50) * 20; // 20-40px
