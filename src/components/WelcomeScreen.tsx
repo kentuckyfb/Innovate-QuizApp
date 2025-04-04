@@ -14,7 +14,7 @@ export function WelcomeScreen() {
   // Reset background seed when welcome screen mounts
   useEffect(() => {
     resetBackgroundSeed();
-  }, []);
+  }, [resetBackgroundSeed]);
 
   // Animation variants
   const containerVariants = {
@@ -51,7 +51,7 @@ export function WelcomeScreen() {
 
   // Personality style with text shadow and font family
   const personalityStyle = {
-    textShadow: `3px 3px 0px #330033`, // Darker purple shadow
+    textShadow: `3px 3px 0px rgba(51, 0, 51, 1)`, // Using rgba
     fontFamily: "'Jockey One', sans-serif",
     letterSpacing: '1px',
     textTransform: 'uppercase',
@@ -73,20 +73,32 @@ export function WelcomeScreen() {
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        className="w-full h-full flex flex-col justify-center items-center text-center py-3"
-        style={{ maxHeight: 'calc(100vh - 130px)' }}
+        className="w-full flex flex-col justify-center items-center text-center py-3"
+        style={{ 
+          height: '100%',
+          maxHeight: '100vh',
+          overflow: 'hidden'
+        }}
       >
-        <div className="w-full max-w-md mx-auto px-4 flex flex-col h-full justify-between">
+        <div className="w-full max-w-md mx-auto px-4 flex flex-col justify-between" style={{ height: 'auto' }}>
           {/* Main content container */}
           <div className="flex flex-col items-center">
-            {/* Hero image with animations - reduced size */}
+            {/* Hero image with animations - Fixed for responsive design */}
             <motion.div
               variants={itemVariants}
-              className="relative mb-4 w-full max-w-xs mx-auto"
+              className="relative mb-4 w-full mx-auto"
+              style={{ 
+                maxWidth: '85%',
+                display: 'flex',
+                justifyContent: 'center'
+              }}
             >
               <motion.div
                 className="absolute inset-0 rounded-lg opacity-20 blur-md"
-                style={{ backgroundColor: theme.colors.primary.dark }}
+                style={{ 
+                  backgroundColor: 'rgb(174, 0, 116)', // RGB for primary.dark
+                  maxHeight: '100%'
+                }}
                 animate={{
                   scale: [1, 1.03, 1],
                 }}
@@ -97,169 +109,123 @@ export function WelcomeScreen() {
                 }}
               />
 
-              <motion.div
-                variants={itemVariants}
-                className="relative mb-4 w-full max-w-xs mx-auto"
+              <motion.img
+                src={image2}
+                alt="Avrudu Greatness Level Up"
+                className="relative z-10 rounded-xl shadow-lg"
                 style={{
-                  maxHeight: '40vh', // Limit maximum height
-                  overflow: 'hidden' // Prevent any overflow from the container
+                  maxWidth: '100%',
+                  height: 'auto',
+                  maxHeight: '30vh',
+                  objectFit: 'contain',
+                  objectPosition: 'center'
                 }}
-              >
-                <motion.div
-                  className="absolute inset-0 rounded-lg opacity-20 blur-md"
-                  style={{ backgroundColor: theme.colors.primary.dark }}
-                  animate={{
-                    scale: [1, 1.03, 1],
-                  }}
-                  transition={{
-                    duration: 3,
+                animate={{
+                  scale: [1, 1.01, 1],
+                  rotate: [0, 0.5, 0, -0.5, 0],
+                }}
+                transition={{
+                  scale: {
+                    duration: 5,
                     repeat: Infinity,
                     repeatType: 'mirror',
-                  }}
-                />
+                  },
+                  rotate: {
+                    duration: 6,
+                    repeat: Infinity,
+                    repeatType: 'mirror',
+                  },
+                }}
+              />
+            </motion.div>
 
-                <motion.div
-                  variants={itemVariants}
-                  className="relative mb-4 w-full mx-auto"
-                  style={{
-                    height: 'auto',
-                    maxWidth: '90%'
-                  }}
-                >
-                  <motion.div
-                    className="absolute inset-0 rounded-lg opacity-20 blur-md"
-                    style={{ backgroundColor: theme.colors.primary.dark }}
-                    animate={{
-                      scale: [1, 1.03, 1],
-                    }}
-                    transition={{
-                      duration: 3,
-                      repeat: Infinity,
-                      repeatType: 'mirror',
-                    }}
-                  />
-
-                  <motion.img
-                    src={image2}
-                    alt="Avrudu Greatness Level Up"
-                    className="w-full h-auto rounded-xl shadow-lg relative z-10"
-                    style={{
-                      maxWidth: '100%',
-                      maxHeight: '30vh',
-                      objectFit: 'contain'
-                    }}
-                    animate={{
-                      scale: [1, 1.01, 1],
-                      rotate: [0, 0.5, 0, -0.5, 0],
-                    }}
-                    transition={{
-                      scale: {
-                        duration: 5,
-                        repeat: Infinity,
-                        repeatType: 'mirror',
-                      },
-                      rotate: {
-                        duration: 6,
-                        repeat: Infinity,
-                        repeatType: 'mirror',
-                      },
-                    }}
-                  />
-                </motion.div>
-                <motion.h1
-                  variants={itemVariants}
-                  className="mb-3 leading-tight"
-                  style={{ color: theme.colors.primary.contrastText }}
-                >
-                  {/* Reduced size for "Unlock Your Innovate" text */}
-                  <span className="text-sm sm:text-base md:text-lg font-medium block mb-1">
-                    Unlock Your Innovate
-                  </span>
-                  {/* <span
+            <motion.h1
+              variants={itemVariants}
+              className="mb-3 leading-tight"
+              style={{ color: 'rgb(255, 255, 255)' }} // RGB for primary.contrastText
+            >
+              {/* "Unlock Your" text */}
+              <span 
+                className="text-sm sm:text-base md:text-lg font-medium block mb-1"
+                style={{ 
+                  fontFamily: 'Arame, sans-serif',
+                  fontWeight: 'bold'
+                }}
+              >
+                Unlock Your Innovate
+              </span>
+              
+              {/* Sinhala text */}
+              <span
+                className="font-bold"
+                style={{
+                  fontSize: 'clamp(1.25rem, 5vw, 2.5rem)',
+                }}
+              >
+                අවුරුදු{' '}
+              </span>
+              
+              {/* "PERSONALITY" text */}
+              <span
                 style={{
                   ...personalityStyle,
-                  color: theme.colors.secondary.main,
-                  fontSize: 'clamp(1.2rem, 5vw, 2.5rem)',
+                  color: 'rgb(251, 192, 45)', // RGB for secondary.main
+                  fontSize: 'clamp(1rem, 5vw, 2.5rem)',
                   display: 'inline-block',
                   position: 'relative',
                   transform: 'translateY(2px)',
-                  fontFamily: 'Arame',
+                  fontFamily: 'Arame, sans-serif',
                   fontWeight: 'bold',
                 }}
               >
-                INNOVATE{' '}
-              </span>{' '} */}
-                  {/* Sinhala text - keep original font */}
-                  <span
-                    className="font-bold"
-                    style={{
-                      fontSize: 'clamp(1.25rem, 5vw, 2.5rem)',
-                    }}
-                  >
-                    අවුරුදු{' '}
-                  </span>
-                  {/* Apply Jockey One only to "Personality" with darker purple shadow */}
-                  <span
-                    style={{
-                      ...personalityStyle,
-                      color: theme.colors.secondary.main,
-                      fontSize: 'clamp(1rem, 5vw, 2.5rem)',
-                      display: 'inline-block',
-                      position: 'relative',
-                      transform: 'translateY(2px)',
-                      fontFamily: 'Arame',
-                      fontWeight: 'bold',
-                    }}
-                  >
-                    PERSONALITY
-                  </span>{' '}
-                </motion.h1>
+                PERSONALITY
+              </span>
+            </motion.h1>
 
-                <motion.p
-                  variants={itemVariants}
-                  className="text-sm sm:text-base mb-5 max-w-sm mx-auto"
-                  style={{ color: theme.colors.primary.contrastText }}
-                >
-                  Find out which Sinhala & Tamil New Year personality matches your
-                  vibe!
-                </motion.p>
-              </div>
-
-              {/* Button at bottom with subtle animation */}
-              <motion.div
-                variants={itemVariants}
-                className="relative inline-block self-center mb-2"
-              >
-                {/* Remove the problematic glow effect and replace with a simple button */}
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  onClick={handleStartQuiz}
-                  className="relative px-6 py-3 rounded-full font-semibold shadow-lg z-10 text-sm md:text-base"
-                  style={{
-                    backgroundColor: theme.colors.secondary.main,
-                    color: theme.colors.primary.contrastText,
-                    ...buttonShadowStyle,
-                    fontFamily: 'Arame',
-                    fontWeight: 'bold',
-                  }}
-                  animate={{
-                    boxShadow: [
-                      `4px 4px 0px rgba(51, 0, 51, 1), 0px 0px 0px rgba(251, 192, 45, 0)`,
-                      `4px 4px 0px rgba(51, 0, 51, 1), 0px 0px 15px rgba(251, 192, 45, 0.6)`,
-                      `4px 4px 0px rgba(51, 0, 51, 1), 0px 0px 0px rgba(251, 192, 45, 0)`,
-                    ],
-                  }}
-                  transition={{
-                    duration: 2,
-                    repeat: Infinity,
-                    repeatType: 'mirror',
-                  }}
-                >
-                  READY TO PLAY?
-                </motion.button>
-              </motion.div>
+            <motion.p
+              variants={itemVariants}
+              className="text-sm sm:text-base mb-5 max-w-sm mx-auto"
+              style={{ color: 'rgb(255, 255, 255)' }} // RGB for primary.contrastText
+            >
+              Find out which Sinhala & Tamil New Year personality matches your
+              vibe!
+            </motion.p>
           </div>
+
+          {/* Button with subtle animation */}
+          <motion.div
+            variants={itemVariants}
+            className="relative inline-block self-center mb-2"
+          >
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={handleStartQuiz}
+              className="relative px-6 py-3 rounded-full font-semibold shadow-lg z-10 text-sm md:text-base"
+              style={{
+                backgroundColor: 'rgb(251, 192, 45)', // RGB for secondary.main
+                color: 'rgb(255, 255, 255)', // RGB for primary.contrastText
+                ...buttonShadowStyle,
+                fontFamily: 'Arame, sans-serif',
+                fontWeight: 'bold',
+              }}
+              animate={{
+                boxShadow: [
+                  `4px 4px 0px rgba(51, 0, 51, 1), 0px 0px 0px rgba(251, 192, 45, 0)`,
+                  `4px 4px 0px rgba(51, 0, 51, 1), 0px 0px 15px rgba(251, 192, 45, 0.6)`,
+                  `4px 4px 0px rgba(51, 0, 51, 1), 0px 0px 0px rgba(251, 192, 45, 0)`,
+                ],
+              }}
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+                repeatType: 'mirror',
+              }}
+            >
+              READY TO PLAY?
+            </motion.button>
+          </motion.div>
+        </div>
       </motion.div>
     </>
   );
