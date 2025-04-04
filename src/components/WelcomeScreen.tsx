@@ -97,39 +97,60 @@ export function WelcomeScreen() {
                 }}
               />
 
-              <motion.img
-                src={image2}
-                alt="Avrudu Greatness Level Up"
-                className="w-full h-auto rounded-xl shadow-lg relative z-10"
-                animate={{
-                  scale: [1, 1.01, 1],
-                  rotate: [0, 0.5, 0, -0.5, 0],
+              <motion.div
+                variants={itemVariants}
+                className="relative mb-4 w-full max-w-xs mx-auto"
+                style={{
+                  maxHeight: '40vh', // Limit maximum height
+                  overflow: 'hidden' // Prevent any overflow from the container
                 }}
-                transition={{
-                  scale: {
-                    duration: 5,
+              >
+                <motion.div
+                  className="absolute inset-0 rounded-lg opacity-20 blur-md"
+                  style={{ backgroundColor: theme.colors.primary.dark }}
+                  animate={{
+                    scale: [1, 1.03, 1],
+                  }}
+                  transition={{
+                    duration: 3,
                     repeat: Infinity,
                     repeatType: 'mirror',
-                  },
-                  rotate: {
-                    duration: 6,
-                    repeat: Infinity,
-                    repeatType: 'mirror',
-                  },
-                }}
-              />
-            </motion.div>
+                  }}
+                />
 
-            <motion.h1
-              variants={itemVariants}
-              className="mb-3 leading-tight"
-              style={{ color: theme.colors.primary.contrastText }}
-            >
-              {/* Reduced size for "Unlock Your Innovate" text */}
-              <span className="text-sm sm:text-base md:text-lg font-medium block mb-1">
-                Unlock Your Innovate
-              </span>
-              {/* <span
+                <motion.img
+                  src={image2}
+                  alt="Avrudu Greatness Level Up"
+                  className="w-full h-auto rounded-xl shadow-lg relative z-10 object-contain"
+                  style={{ maxHeight: '40vh' }} // Match the container's max height
+                  animate={{
+                    scale: [1, 1.01, 1],
+                    rotate: [0, 0.5, 0, -0.5, 0],
+                  }}
+                  transition={{
+                    scale: {
+                      duration: 5,
+                      repeat: Infinity,
+                      repeatType: 'mirror',
+                    },
+                    rotate: {
+                      duration: 6,
+                      repeat: Infinity,
+                      repeatType: 'mirror',
+                    },
+                  }}
+                />
+              </motion.div>
+              <motion.h1
+                variants={itemVariants}
+                className="mb-3 leading-tight"
+                style={{ color: theme.colors.primary.contrastText }}
+              >
+                {/* Reduced size for "Unlock Your Innovate" text */}
+                <span className="text-sm sm:text-base md:text-lg font-medium block mb-1">
+                  Unlock Your Innovate
+                </span>
+                {/* <span
                 style={{
                   ...personalityStyle,
                   color: theme.colors.secondary.main,
@@ -143,40 +164,40 @@ export function WelcomeScreen() {
               >
                 INNOVATE{' '}
               </span>{' '} */}
-              {/* Sinhala text - keep original font */}
-              <span
-                className="font-bold"
-                style={{
-                  fontSize: 'clamp(1.25rem, 5vw, 2.5rem)',
-                }}
-              >
-                අවුරුදු{' '}
-              </span>
-              {/* Apply Jockey One only to "Personality" with darker purple shadow */}
-              <span
-                style={{
-                  ...personalityStyle,
-                  color: theme.colors.secondary.main,
-                  fontSize: 'clamp(1rem, 5vw, 2.5rem)',
-                  display: 'inline-block',
-                  position: 'relative',
-                  transform: 'translateY(2px)',
-                  fontFamily: 'Arame',
-                  fontWeight: 'bold',
-                }}
-              >
-                PERSONALITY
-              </span>{' '}
-            </motion.h1>
+                {/* Sinhala text - keep original font */}
+                <span
+                  className="font-bold"
+                  style={{
+                    fontSize: 'clamp(1.25rem, 5vw, 2.5rem)',
+                  }}
+                >
+                  අවුරුදු{' '}
+                </span>
+                {/* Apply Jockey One only to "Personality" with darker purple shadow */}
+                <span
+                  style={{
+                    ...personalityStyle,
+                    color: theme.colors.secondary.main,
+                    fontSize: 'clamp(1rem, 5vw, 2.5rem)',
+                    display: 'inline-block',
+                    position: 'relative',
+                    transform: 'translateY(2px)',
+                    fontFamily: 'Arame',
+                    fontWeight: 'bold',
+                  }}
+                >
+                  PERSONALITY
+                </span>{' '}
+              </motion.h1>
 
-            <motion.p
-              variants={itemVariants}
-              className="text-sm sm:text-base mb-5 max-w-sm mx-auto"
-              style={{ color: theme.colors.primary.contrastText }}
-            >
-              Find out which Sinhala & Tamil New Year personality matches your
-              vibe!
-            </motion.p>
+              <motion.p
+                variants={itemVariants}
+                className="text-sm sm:text-base mb-5 max-w-sm mx-auto"
+                style={{ color: theme.colors.primary.contrastText }}
+              >
+                Find out which Sinhala & Tamil New Year personality matches your
+                vibe!
+              </motion.p>
           </div>
 
           {/* Button at bottom with subtle animation */}
