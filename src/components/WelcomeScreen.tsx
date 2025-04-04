@@ -167,7 +167,7 @@ export function WelcomeScreen() {
                   fontWeight: 'bold',
                 }}
               >
-                INNOVATE
+                INNOVATE{' '}
               </span>
               {/* Sinhala text */}
               <span
