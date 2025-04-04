@@ -152,9 +152,23 @@ export function WelcomeScreen() {
                   fontWeight: 'bold'
                 }}
               >
-                Unlock Your Innovate
+                Unlock Your 
               </span>
-              
+
+              <span
+                style={{
+                  ...personalityStyle,
+                  color: 'rgb(251, 192, 45)', // RGB for secondary.main
+                  fontSize: 'clamp(1rem, 5vw, 2.5rem)',
+                  display: 'inline-block',
+                  position: 'relative',
+                  transform: 'translateY(2px)',
+                  fontFamily: 'Arame, sans-serif',
+                  fontWeight: 'bold',
+                }}
+              >
+                INNOVATE
+              </span>
               {/* Sinhala text */}
               <span
                 className="font-bold"
