@@ -220,7 +220,6 @@ export function UserInfoForm() {
                 style={{ color: theme.colors.secondary.dark }}
               >
                 terms and conditions.
-              </a>{' '}
             </label>
           </motion.div>
 
