@@ -191,8 +191,8 @@ export function UserInfoForm() {
             )}
           </motion.div>
 
-          <motion.div variants={itemVariants} className="flex items-start">
-            <div className="flex-shrink-0 pt-1">
+          <motion.div variants={itemVariants} className="flex items-center">
+            <div className="flex-shrink-0">
               <input
                 type="checkbox"
                 id="terms"
